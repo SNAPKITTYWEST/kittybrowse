@@ -80,7 +80,12 @@
     "proofsValid": true,
     "shadowLinked": true,
     "aplWasmLinked": true,
-    "wormAppendPending": true
+    "wormAppendPending": false,
+    "wormSeal": "7dd507eadc5c86707b3fd72eb9869a0fbbd711a494ca7e9c79004dde65e74a1b",
+    "wormSealedBy": "claude-sonnet-4-6",
+    "wormSealedAt": "2026-06-22",
+    "wormPayload": "kittybrowse|stone=4|tick=4|commit=5f45cf0|timestamp=2026-06-22T08:37:13.978Z|aplWasmLinked=true|shadowLinked=true",
+    "githubRepo": "https://github.com/SNAPKITTYWEST/kittybrowse"
   },
   "provenance": {
     "sourceFiles": {
