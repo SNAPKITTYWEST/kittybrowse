@@ -1,0 +1,111 @@
+{
+  "protocol": "shadow-grisp/json-handshake-v1",
+  "from": {
+    "stone": 4,
+    "model": "GPT-5 Codex",
+    "repo": "kittybrowse"
+  },
+  "to": {
+    "stone": 3,
+    "model": "GPT-5 Codex",
+    "repo": "shadow-orchestrator",
+    "handshake": "../shadow-orchestrator/lineage/stone-3-handshake.json"
+  },
+  "mode": "kittybrowse-apl-wasm-control-plane-meet-in-middle",
+  "timestamp_utc": "2026-06-22T08:37:13.978Z",
+  "verification": {
+    "shadow_protocol": "shadow-grisp/json-handshake-v1",
+    "shadow_mode": "frontend-phoenix-meet-in-middle",
+    "shadow_chain_valid": true,
+    "shadow_tests": "npm test passed",
+    "kittybrowse_tests": "npm test passed",
+    "kittybrowse_audit": "npm audit --audit-level=high passed",
+    "kittybrowse_runtime": "npm run runtime boots with vmTarget=apl-wasm",
+    "apl_wasm_primary": true,
+    "javascript_role": "UI/IPC/NATS envelope glue only"
+  },
+  "integration": {
+    "chromium_shell": "Electron BrowserWindow with preload IPC bridge",
+    "agent_runtime": "src/runtime/agent-runtime.ts",
+    "event_backbone": "NATS when NATS_URL is available; local mesh fallback otherwise",
+    "rust_nats_worker": "crates/rust-vm-bridge subscribes to kitty.task.run and publishes kitty.task.result with async-nats",
+    "scheduler": "src/shared/entropy.ts",
+    "primary_vm_target": "apl-wasm",
+    "existing_apl_wasm_sources": [
+      "../DEVFLOW-FINANCE/bridges/apl/finance.apl",
+      "../DEVFLOW-FINANCE/bridges/rust/apl_bridge.rs",
+      "../DEVFLOW-FINANCE/snapkitty-wasm/src/lib.rs",
+      "../DEVFLOW-FINANCE/collectivekitty/public/wasm/snapkitty_wasm_bg.wasm"
+    ],
+    "mirror_files": [
+      "lineage/kittybrowse-shadow-handshake.json",
+      "../shadow-orchestrator/lineage/stone-4-kittybrowse-handshake.json"
+    ]
+  },
+  "coreRule": {
+    "bob": [
+      "acts",
+      "writes",
+      "executes"
+    ],
+    "shadow": [
+      "watches",
+      "predicts",
+      "evaluates"
+    ]
+  },
+  "nonRecursiveLaw": {
+    "forbidden": [
+      "Shadow -> Shadow",
+      "Shadow -> Spawn Shadow",
+      "Shadow -> Rewrite Shadow",
+      "Shadow -> Self Modify"
+    ],
+    "allowed": [
+      "Live -> Shadow",
+      "Shadow -> Analysis",
+      "Shadow -> Report",
+      "UI -> Authorized Dispatch Request"
+    ]
+  },
+  "handoff": {
+    "to_claude": "Consume stone-4-kittybrowse-handshake.json as the JSON bridge from Shadow Orchestrator to KittyBrowse. Treat KittyBrowse as a Chromium control plane whose execution authority is APL/Rust/WASM, not JavaScript.",
+    "to_next_stone": "Replace simulated apl-wasm adapter output with a real call into the DEVFLOW-FINANCE APL/WASM package or a signed NATS subject handled by that bridge.",
+    "message": "KittyBrowse now speaks the Shadow lineage handshake format and anchors its agent runtime to the APL/WASM substrate."
+  },
+  "state": {
+    "class": "INTEGRATED",
+    "tick": 4,
+    "contractsValid": true,
+    "proofsValid": true,
+    "shadowLinked": true,
+    "aplWasmLinked": true,
+    "wormAppendPending": true
+  },
+  "provenance": {
+    "sourceFiles": {
+      "kitty_protocol": "docs/kitty-protocol-v1.md",
+      "apl_wasm_boundary": "docs/apl-wasm-runtime.md",
+      "apl_wasm_plugin": "plugins/vm/apl-wasm/kitty.plugin.json",
+      "runtime_protocol": "src/shared/protocol.ts",
+      "runtime_mesh": "src/runtime/mesh.ts",
+      "runtime_agent": "src/runtime/agent-runtime.ts",
+      "rust_nats_doc": "docs/nats-rust-bridge.md",
+      "rust_bridge_manifest": "crates/rust-vm-bridge/Cargo.toml",
+      "rust_bridge_lib": "crates/rust-vm-bridge/src/lib.rs",
+      "shadow_stone_3": "../shadow-orchestrator/lineage/stone-3-handshake.json"
+    },
+    "sourceHashes": {
+      "kitty_protocol": "ef6dc3b4fc04914a5d90934e8cf04772e98aa626e25bc165179e35e6df256522",
+      "apl_wasm_boundary": "f3c2287c4c0e2928bfd1a89c15c2be39274764c0772392565e1998eea0cb92db",
+      "apl_wasm_plugin": "e774f309014de51c6ca2fc7766bac92dab88ec46dcf51ce1fb9989fc2a24a82e",
+      "runtime_protocol": "a49b3c171d5be5be942f0dffe27b11d93601b497bd2e7ef75945f6274da1e3ba",
+      "runtime_mesh": "ee85f1e3a543bc24261ae94067e68823569d72de760f60195db79f59ff95bf72",
+      "runtime_agent": "33736e9629a168a782cb2f7d9c2823bbcc675e54a22b625141a33f36f5a68044",
+      "rust_nats_doc": "5b526e28c87ee28f5698e533e36f10b891a8c03a488306f9703b011a3748affb",
+      "rust_bridge_manifest": "3deeea8fd8077a9300ff17a304d519ed0e0b0451abbe9ce89a3162033f4f1db2",
+      "rust_bridge_lib": "c3aa02cc3d372ef43cecbb4c4795f162361d5b591129404c7c2c1c97c4d13825",
+      "shadow_stone_3": "36bd13a37b4b9450543f80fd101c7751a111916f242fdd7e2a20a0f2ad1c6ffe"
+    }
+  }
+}

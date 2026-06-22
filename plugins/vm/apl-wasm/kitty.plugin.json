@@ -1,0 +1,20 @@
+{
+  "id": "kitty.vm.apl-wasm",
+  "type": "vm",
+  "target": "apl-wasm",
+  "description": "Primary KittyBrowse execution substrate: APL semantics compiled and sealed through the Rust/WASM bridge.",
+  "commands": ["execute_resonance_vm", "analyze_finance_vector", "render_agent_page"],
+  "transport": "wasm",
+  "upstreamReferences": [
+    "../DEVFLOW-FINANCE/bridges/rust/apl_bridge.rs",
+    "../DEVFLOW-FINANCE/bridges/apl/finance.apl",
+    "../DEVFLOW-FINANCE/snapkitty-wasm/src/lib.rs",
+    "../DEVFLOW-FINANCE/collectivekitty/public/wasm/snapkitty_wasm_bg.wasm"
+  ],
+  "permissions": {
+    "rawShell": false,
+    "network": false,
+    "javascriptExecution": false
+  }
+}
+

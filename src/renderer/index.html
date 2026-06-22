@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KittyBrowse</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="mark">KB</span>
+          <div>
+            <h1>KittyBrowse</h1>
+            <p>Agent browser control plane</p>
+          </div>
+        </div>
+        <section>
+          <h2>Mesh</h2>
+          <div class="metric">
+            <span>Status</span>
+            <strong id="mesh-kind">loading</strong>
+          </div>
+          <div class="metric">
+            <span>Contexts</span>
+            <strong id="context-count">0</strong>
+          </div>
+          <div class="metric">
+            <span>Tasks</span>
+            <strong id="task-count">0</strong>
+          </div>
+        </section>
+        <button id="new-context">New Agent Context</button>
+      </aside>
+
+      <section class="workspace">
+        <header class="toolbar">
+          <div>
+            <h2>Tab = Agent Context</h2>
+            <p>Page = execution surface. URL = task pointer.</p>
+          </div>
+          <button id="run-task">Dispatch Task</button>
+        </header>
+
+        <section class="grid">
+          <article class="panel">
+            <h3>Agent Contexts</h3>
+            <div id="contexts" class="list"></div>
+          </article>
+
+          <article class="panel">
+            <h3>Task Composer</h3>
+            <label>
+              Command
+              <select id="command">
+                <option value="execute_resonance_vm">execute_resonance_vm</option>
+                <option value="analyze_finance_vector">analyze_finance_vector</option>
+                <option value="inspect_workspace">inspect_workspace</option>
+                <option value="open_lsp_context">open_lsp_context</option>
+                <option value="render_agent_page">render_agent_page</option>
+                <option value="raw_shell">raw_shell</option>
+              </select>
+            </label>
+            <label>
+              VM Target
+              <select id="vm-target">
+                <option value="apl-wasm">apl-wasm</option>
+                <option value="python">python</option>
+                <option value="rust">rust</option>
+                <option value="wasm">wasm</option>
+                <option value="docker">docker</option>
+              </select>
+            </label>
+            <label>
+              IDE Target
+              <select id="ide-target">
+                <option value="vscode">vscode</option>
+                <option value="none">none</option>
+                <option value="neovim">neovim</option>
+                <option value="jetbrains">jetbrains</option>
+              </select>
+            </label>
+            <label>
+              Fail Rate
+              <input id="fail-rate" type="number" min="0" max="1" step="0.01" value="0.05" />
+            </label>
+            <label>
+              Latency MS
+              <input id="latency" type="number" min="0" step="100" value="250" />
+            </label>
+          </article>
+
+          <article class="panel wide">
+            <h3>Output Stream</h3>
+            <div id="results" class="stream"></div>
+          </article>
+        </section>
+      </section>
+    </main>
+    <script src="./renderer.js"></script>
+  </body>
+</html>

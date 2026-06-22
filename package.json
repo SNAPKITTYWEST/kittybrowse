@@ -1,0 +1,26 @@
+{
+  "name": "@snapkitty/kittybrowse",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Proprietary agent browser shell with Electron, NATS mesh, IDE/VM bridge stubs, and entropy scheduling.",
+  "type": "module",
+  "main": "dist/src/main/main.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node scripts/copy-renderer.mjs",
+    "dev": "npm run build && electron .",
+    "start": "npm run build && electron .",
+    "runtime": "npm run build && node dist/src/runtime/agent-runtime.js",
+    "handshake": "node scripts/write-handshake.mjs && node scripts/validate-handshake.mjs",
+    "rust:test": "cargo test --manifest-path crates/rust-vm-bridge/Cargo.toml",
+    "test": "npm run build && node --test dist/tests/*.test.js"
+  },
+  "dependencies": {
+    "nats": "^2.29.3",
+    "uuid": "^11.0.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "electron": "^42.4.1",
+    "typescript": "^5.7.2"
+  }
+}

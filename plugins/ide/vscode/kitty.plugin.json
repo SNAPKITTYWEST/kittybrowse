@@ -1,0 +1,13 @@
+{
+  "id": "kitty.ide.vscode",
+  "type": "ide",
+  "target": "vscode",
+  "description": "LSP-only VSCode bridge surface for KittyBrowse agent contexts.",
+  "commands": ["open_lsp_context", "inspect_workspace"],
+  "transport": "lsp",
+  "permissions": {
+    "rawShell": false,
+    "workspaceWrite": false
+  }
+}
+

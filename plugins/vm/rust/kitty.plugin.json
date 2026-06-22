@@ -1,0 +1,14 @@
+{
+  "id": "kitty.vm.rust",
+  "type": "vm",
+  "target": "rust",
+  "description": "Rust VM bridge for local deterministic task execution.",
+  "commands": ["execute_resonance_vm", "render_agent_page"],
+  "transport": "stdio",
+  "binary": "crates/rust-vm-bridge/target/release/rust-vm-bridge",
+  "permissions": {
+    "rawShell": false,
+    "network": false
+  }
+}
+
