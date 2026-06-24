@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>KittyBrowse — Sovereign Agent File Browser</title>
+<meta name="description" content="Electron agent browser shell. APL/WASM runtime. NATS mesh + Rust VM bridge + entropy scheduler. Right-join logic. 9/9 tests passing."/>
+<meta name="theme-color" content="#0a84ff"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#04040a;--bg1:#060b10;--bg2:#09101a;--border:#1a2030;--text:#e0e0f0;--dim:#555;--blue:#0a84ff;--green:#00ff88;--purple:#bf5af2;--mono:'SF Mono',Monaco,Consolas,monospace}
+html,body{min-height:100%;background:var(--bg);color:var(--text);font-family:var(--mono)}
+a{color:inherit;text-decoration:none}
+.hero{max-width:920px;margin:0 auto;padding:80px 24px 60px;text-align:center}
+.mark{display:inline-flex;align-items:center;gap:8px;font-size:9px;letter-spacing:3px;color:var(--blue);border:1px solid #1a2030;border-radius:4px;padding:4px 12px;margin-bottom:32px}
+h1{font-size:clamp(28px,5vw,52px);font-weight:700;line-height:1.15;margin-bottom:18px}
+h1 span{color:var(--blue)}
+.sub{font-size:15px;color:#666;line-height:1.7;max-width:560px;margin:0 auto 40px}
+.ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-primary{padding:12px 28px;background:var(--blue);color:#fff;border-radius:8px;font-weight:700;font-size:13px;font-family:var(--mono)}
+.btn-ghost{padding:12px 28px;border:1px solid var(--border);color:#888;border-radius:8px;font-size:13px;font-family:var(--mono)}
+.screen{max-width:680px;margin:0 auto 72px;background:var(--bg1);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.screen-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 14px;display:flex;align-items:center;gap:8px}
+.dot{width:8px;height:8px;border-radius:50%}
+.screen-title{font-size:9px;color:#555;margin-left:6px;letter-spacing:1px}
+.screen-body{display:grid;grid-template-columns:200px 1fr;min-height:200px}
+.sb{border-right:1px solid var(--border);padding:12px}
+.sb-label{font-size:8px;letter-spacing:2px;color:var(--dim);margin-bottom:8px}
+.sb-item{font-size:10px;color:#888;padding:4px 6px;border-radius:4px;cursor:pointer;margin-bottom:2px}
+.sb-item.active{color:var(--blue);background:#0a84ff15}
+.main-pane{padding:12px}
+.file-row{display:flex;align-items:center;gap:10px;padding:6px 8px;border-radius:4px;font-size:10px;color:#888;cursor:pointer}
+.file-row:hover{background:#0a84ff10;color:var(--text)}
+.file-icon{width:16px;text-align:center}
+.file-name{flex:1}
+.file-size{color:var(--dim)}
+.file-status{font-size:8px;padding:1px 6px;border-radius:3px}
+.s-ok{background:#00ff8815;color:#00ff88;border:1px solid #00ff8825}
+.s-seal{background:#0a84ff15;color:#0a84ff;border:1px solid #0a84ff25}
+.status-bar{border-top:1px solid var(--border);padding:6px 12px;display:flex;gap:16px;font-size:9px;color:var(--dim)}
+.sb-dot{width:5px;height:5px;border-radius:50%;background:var(--green);display:inline-block;margin-right:4px}
+.features{max-width:920px;margin:0 auto;padding:0 24px 80px}
+.section-label{font-size:9px;letter-spacing:3px;color:var(--dim);margin-bottom:24px;text-align:center}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:var(--bg1);border:1px solid var(--border);border-radius:10px;padding:18px 20px}
+.card-icon{font-size:18px;margin-bottom:10px}
+.card-title{font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px}
+.card-desc{font-size:11px;color:#555;line-height:1.6}
+.tests{max-width:560px;margin:0 auto 60px;background:var(--bg1);border:1px solid var(--border);border-radius:8px;padding:16px 20px}
+.test-row{display:flex;align-items:center;gap:10px;font-size:10px;padding:3px 0}
+.t-pass{color:#00ff88}
+.t-name{color:#888;flex:1}
+footer{border-top:1px solid var(--border);padding:20px 24px;text-align:center;font-size:10px;color:var(--dim)}
+footer a{color:var(--blue)}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="mark">SNAPKITTY SOVEREIGN OS - BUILD LANE</div>
+  <h1>NATS-native<br><span>agent file browser.</span></h1>
+  <p class="sub">KittyBrowse is an Electron shell that mounts agent file systems over NATS mesh. APL/WASM runtime, Rust VM bridge, entropy scheduler. Right-join directory logic. 9/9 tests green.</p>
+  <div class="ctas">
+    <a class="btn-primary" href="https://github.com/SNAPKITTYWEST/kittybrowse" target="_blank">View Source</a>
+    <a class="btn-ghost" href="https://collectivekitty.com/apps" target="_blank">App Directory</a>
+  </div>
+</div>
+<div class="screen">
+  <div class="screen-bar">
+    <div class="dot" style="background:#ff453a"></div>
+    <div class="dot" style="background:#ffd60a"></div>
+    <div class="dot" style="background:#00ff88"></div>
+    <span class="screen-title">KittyBrowse - agent://nova/workspace</span>
+  </div>
+  <div class="screen-body">
+    <div class="sb">
+      <div class="sb-label">AGENTS</div>
+      <div class="sb-item active">NOVA</div>
+      <div class="sb-item">BOB</div>
+      <div class="sb-item">BIFROST</div>
+      <div class="sb-item">HERALD</div>
+      <div class="sb-label" style="margin-top:12px">VOLUMES</div>
+      <div class="sb-item active">workspace/</div>
+      <div class="sb-item">worm/</div>
+      <div class="sb-item">entropy/</div>
+    </div>
+    <div class="main-pane">
+      <div class="file-row"><span class="file-icon">folder</span><span class="file-name">src/</span><span class="file-size">12 items</span></div>
+      <div class="file-row"><span class="file-icon">file</span><span class="file-name">trust.deed</span><span class="file-size">2.1KB</span><span class="file-status s-seal">WORM</span></div>
+      <div class="file-row"><span class="file-icon">file</span><span class="file-name">chain.jsonl</span><span class="file-size">44KB</span><span class="file-status s-seal">WORM</span></div>
+      <div class="file-row"><span class="file-icon">file</span><span class="file-name">session.apl</span><span class="file-size">880B</span><span class="file-status s-ok">APL</span></div>
+      <div class="file-row"><span class="file-icon">file</span><span class="file-name">entropy.bin</span><span class="file-size">128B</span><span class="file-status s-ok">VM</span></div>
+    </div>
+  </div>
+  <div class="status-bar">
+    <span><span class="sb-dot"></span>NATS connected</span>
+    <span>4 agents online</span>
+    <span>right-join active</span>
+    <span>9/9 tests pass</span>
+  </div>
+</div>
+<div class="features">
+  <p class="section-label">UNDER THE HOOD</p>
+  <div class="grid">
+    <div class="card"><div class="card-icon">network</div><div class="card-title">NATS Mesh</div><div class="card-desc">Mounts agent volumes over NATS subjects. Each agent exposes a file system endpoint. Right-join logic merges overlapping trees.</div></div>
+    <div class="card"><div class="card-icon">apl</div><div class="card-title">APL/WASM Runtime</div><div class="card-desc">Primary computation engine. APL array operations compiled to WASM for browser-speed execution inside Electron.</div></div>
+    <div class="card"><div class="card-icon">rust</div><div class="card-title">Rust VM Bridge</div><div class="card-desc">Rust VM handles entropy scheduling and low-level I/O. Bridges the NATS layer with the WASM APL runtime.</div></div>
+    <div class="card"><div class="card-icon">worm</div><div class="card-title">WORM Sealing</div><div class="card-desc">Files written to worm/ are automatically sealed. SHA-256 chain enforced at the Rust VM level.</div></div>
+  </div>
+</div>
+<div class="tests">
+  <p style="font-size:9px;letter-spacing:2px;color:var(--dim);margin-bottom:12px">TEST SUITE - 9/9 PASSING</p>
+  <div class="test-row"><span class="t-pass">PASS</span><span class="t-name">right-join empty left tree</span></div>
+  <div class="test-row"><span class="t-pass">PASS</span><span class="t-name">right-join empty right tree</span></div>
+  <div class="test-row"><span class="t-pass">PASS</span><span class="t-name">right-join overlapping keys</span></div>
+  <div class="test-row"><span class="t-pass">PASS</span><span class="t-name">NATS subject mount</span></div>
+  <div class="test-row"><span class="t-pass">PASS</span><span class="t-name">WORM seal on write</span></div>
+  <div class="test-row"><span class="t-pass">PASS</span><span class="t-name">APL array operations</span></div>
+  <div class="test-row"><span class="t-pass">PASS</span><span class="t-name">entropy scheduler tick</span></div>
+  <div class="test-row"><span class="t-pass">PASS</span><span class="t-name">Rust VM bridge init</span></div>
+  <div class="test-row"><span class="t-pass">PASS</span><span class="t-name">file status badges render</span></div>
+</div>
+<footer>
+  Built by <a href="https://collectivekitty.com" target="_blank">SnapKitty Sovereign OS</a>
+  <a href="https://github.com/SNAPKITTYWEST/kittybrowse" target="_blank">GitHub</a>
+  Sovereign License
+</footer>
+</body>
+</html>
