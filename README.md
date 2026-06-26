@@ -59,3 +59,5 @@ npm run dev
 - NATS messages are structured envelopes; signing can be added at the envelope layer.
 - IDE control should stay LSP-only.
 - Shell execution is intentionally absent from this scaffold.
+
+![](https://sovereign-analytics.snapkittywest.workers.dev/canary/kittybrowse)
